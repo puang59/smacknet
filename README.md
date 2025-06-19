@@ -18,25 +18,9 @@ bun install
 cd server && bun install && cd ..
 ```
 
-3. Configure proxy list and user agents:
+3. Configure user agents:
 
-- Create `data/proxies.txt` with these lines:
-
-```
-socks5://127.0.0.1:1081
-socks5://localhost:1081
-```
-
-- Create `data/uas.txt` with common user agents (one per line):
-
-```
-Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/121.0
-Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2 Safari/605.1.15
-```
-
-You can also get more user agents from [user-agents.net](https://user-agents.net/random) or similar sites.
+Some user agents are already included in `data/uas.txt`, but you can get more from [user-agents.net](https://user-agents.net/random) or similar sites.
 
 4. Start the local proxy server:
 
@@ -45,7 +29,7 @@ cd server
 bun start
 ```
 
-Keep this terminal running. The proxy server will start on port 1081.
+Keep this terminal running. The proxy servers will start on ports 1081-1084.
 
 5. Start the web interface:
 
