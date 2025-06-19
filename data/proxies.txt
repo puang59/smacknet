@@ -1,2 +1,8 @@
 socks5://127.0.0.1:1081
-socks5://localhost:1081 
+socks5://127.0.0.1:1082
+socks5://127.0.0.1:1083
+socks5://127.0.0.1:1084
+socks5://localhost:1081
+socks5://localhost:1082
+socks5://localhost:1083
+socks5://localhost:1084 

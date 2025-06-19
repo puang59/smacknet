@@ -1,22 +1,38 @@
 import net from "net";
 import cluster from "cluster";
-import { cpus } from "os";
-
-const numCPUs = cpus().length;
-const PROXY_PORT = process.env.PORT || 1081;
+const PROXY_PORTS = [1081, 1082, 1083, 1084]; // 4 different proxy servers
 const PROXY_HOST = "0.0.0.0";
 
 if (cluster.isPrimary) {
   console.log(`Master process running on PID ${process.pid}`);
+  console.log(
+    `Starting ${PROXY_PORTS.length} proxy servers on ports: ${PROXY_PORTS.join(
+      ", "
+    )}`
+  );
 
-  // Fork workers for each CPU core
-  for (let i = 0; i < numCPUs; i++) {
-    cluster.fork();
-  }
+  // Fork workers for each proxy port
+  PROXY_PORTS.forEach((port, index) => {
+    const worker = cluster.fork({ PROXY_PORT: port, WORKER_ID: index });
+    console.log(
+      `Started proxy server worker ${worker.process.pid} on port ${port}`
+    );
+  });
 
   cluster.on("exit", (worker) => {
-    console.log(`Worker ${worker.process.pid} died. Restarting...`);
-    cluster.fork();
+    const workerPort = worker.process.env.PROXY_PORT;
+    const workerId = worker.process.env.WORKER_ID;
+    console.log(
+      `Worker ${worker.process.pid} (port ${workerPort}) died. Restarting...`
+    );
+
+    const newWorker = cluster.fork({
+      PROXY_PORT: workerPort,
+      WORKER_ID: workerId,
+    });
+    console.log(
+      `Restarted worker ${newWorker.process.pid} on port ${workerPort}`
+    );
   });
 } else {
   const server = net.createServer((clientSocket) => {
@@ -115,6 +131,7 @@ if (cluster.isPrimary) {
   });
 
   // Start listening
+  const PROXY_PORT = process.env.PROXY_PORT || 1081;
   server.listen(PROXY_PORT, PROXY_HOST, () => {
     console.log(
       `[${process.pid}] SOCKS5 proxy server running on ${PROXY_HOST}:${PROXY_PORT}`

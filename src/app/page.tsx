@@ -164,7 +164,7 @@ export default function Home() {
       setIsAttacking(true);
       setStats({
         pps: 0,
-        bots: 5,
+        bots: 4,
         totalPackets: 0,
       });
       addLog(`[*] Starting attack on ${target}`);
