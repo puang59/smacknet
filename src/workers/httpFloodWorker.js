@@ -11,7 +11,7 @@ self.onmessage = async (e) => {
       const isGet = packetSize > 64 ? false : Math.random() < 0.5;
       const payload = randomString(packetSize);
 
-      const response = await fetch("/api/attack", {
+      const response = await fetch(`${self.location.origin}/api/attack`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

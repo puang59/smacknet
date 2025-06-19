@@ -1,4 +1,5 @@
 # smacknet
+
 A lightweight network stress testing tool designed to simulate high traffic scenarios on IPs and domains. it's simple to run locally, easy to configure, and useful for testing server reliability and performance under load.
 
 ## Setup

@@ -186,7 +186,9 @@ export default function Home() {
       }
 
       // Create and start the worker
-      const newWorker = new Worker("/httpFloodWorker.js");
+      const newWorker = new Worker(
+        new URL("../workers/httpFloodWorker.js", import.meta.url)
+      );
       const customWorker = newWorker as unknown as CustomWorker;
 
       // Handle worker messages
