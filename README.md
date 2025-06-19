@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# smacknet
+A lightweight network stress testing tool designed to simulate high traffic scenarios on IPs and domains. it's simple to run locally, easy to configure, and useful for testing server reliability and performance under load.
 
-## Getting Started
+## Setup
 
-First, run the development server:
+1. Clone the repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+git clone https://github.com/puang59/smacknet.git
+cd smacknet
+```
+
+2. Install dependencies:
+
+```bash
+bun install
+cd server && bun install && cd ..
+```
+
+3. Configure proxy list and user agents:
+
+- Create `data/proxies.txt` with these lines:
+
+```
+socks5://127.0.0.1:1081
+socks5://localhost:1081
+```
+
+- Create `data/uas.txt` with common user agents (one per line):
+
+```
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/121.0
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2 Safari/605.1.15
+```
+
+You can also get more user agents from [user-agents.net](https://user-agents.net/random) or similar sites.
+
+4. Start the local proxy server:
+
+```bash
+cd server
+bun start
+```
+
+Keep this terminal running. The proxy server will start on port 1081.
+
+5. Start the web interface:
+
+```bash
+# In a new terminal
+cd smacknet  # Go back to project root if needed
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+6. Open http://localhost:3000 in your browser
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Usage
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Enter target URL/IP
+2. Configure packet size (1-1500kb)
+3. Set duration (1-300 seconds)
+4. Adjust packet delay (1-1000ms)
+5. Click "Start Attack" to begin testing

@@ -1,0 +1,10 @@
+{
+  "name": "smacknet-proxy",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "SOCKS5 proxy server for smacknet",
+  "main": "proxyServer.js",
+  "scripts": {
+    "start": "node proxyServer.js"
+  }
+}
