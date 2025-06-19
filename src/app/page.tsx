@@ -47,14 +47,12 @@ function ConfigureProxiesAndAgentsView({ onClose }: { onClose: () => void }) {
   }
 
   useEffect(() => {
-    if (!loadingConfiguration) {
-      setLoadingConfiguration(true);
-      retrieveConfiguration().then((config) => {
-        setLoadingConfiguration(false);
-        setConfiguration(config);
-      });
-    }
-  }, [loadingConfiguration]);
+    setLoadingConfiguration(true);
+    retrieveConfiguration().then((config) => {
+      setLoadingConfiguration(false);
+      setConfiguration(config);
+    });
+  }, []); // Empty dependency array to run only once
 
   function saveConfiguration() {
     const obj = {
