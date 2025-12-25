@@ -1,50 +1,102 @@
-# smacknet
+## About
 
-A lightweight network stress testing tool designed to simulate high traffic scenarios on IPs and domains. it's simple to run locally, easy to configure, and useful for testing server reliability and performance under load.
+smacknet is a web-based tool designed for launching HTTP and TCP network attacks. It empowers users to easily configure attack parameters, manage proxy lists, and customize user agents. Monitor your attack statistics in real-time through a user-friendly interface.
 
-## Setup
+## Built With
 
-1. Clone the repository:
+*   **Next.js:** Frontend and backend framework for building the application.
+*   **TypeScript:** For type safety and improved developer experience.
+*   **Web Workers:** Used to perform attack operations in the background, keeping the UI responsive.
 
-```bash
-git clone https://github.com/puang59/smacknet.git
-cd smacknet
-```
+## Getting Started
 
-2. Install dependencies:
+This section guides you through setting up and running the smacknet application.
 
-```bash
-bun install
-cd server && bun install && cd ..
-```
+### Prerequisites
 
-3. Configure user agents:
+*   Node.js (v18 or later recommended)
+*   npm or yarn
 
-Some user agents are already included in `data/uas.txt`, but you can get more from [user-agents.net](https://user-agents.net/random) or similar sites.
+### Installation
 
-4. Start the local proxy server:
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/your-username/smacknet.git
+    cd smacknet
+    ```
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    # or
+    yarn install
+    ```
 
-```bash
-cd server
-bun start
-```
+### Running the Application
 
-Keep this terminal running. The proxy servers will start on ports 1081-1084.
+1.  **Start the development server:**
+    ```bash
+    npm run dev
+    # or
+    yarn dev
+    ```
+    This will launch the smacknet web interface, typically accessible at `http://localhost:3000`.
 
-5. Start the web interface:
-
-```bash
-# In a new terminal
-cd smacknet  # Go back to project root if needed
-bun dev
-```
-
-6. Open http://localhost:3000 in your browser
+2.  **Configure and launch attacks:**
+    Use the web interface to input your target, select attack methods, and configure parameters like proxies, user agents, and attack duration. Click the "Play" button to start an attack.
 
 ## Usage
 
-1. Enter target URL/IP
-2. Configure packet size (1-1500kb)
-3. Set duration (1-300 seconds)
-4. Adjust packet delay (1-1000ms)
-5. Click "Start Attack" to begin testing
+Configure and launch attacks with `smacknet` by specifying your target, attack method, and optional parameters.
+
+*   **Target:** The IP address or domain to attack.
+*   **Attack Method:** Choose from supported methods like `http_flood`, `http_bypass`, `http_slowloris`, `tcp_flood`, or `minecraft_ping`.
+*   **Proxies:** Provide a list of proxies to distribute the attack. `smacknet` will filter them based on the attack method.
+*   **User Agents:** Optionally, specify custom user agents for HTTP-based attacks.
+*   **Duration:** Set the attack duration in seconds.
+
+**Example Command:**
+
+```bash
+smacknet --target 192.168.1.100 --method http_flood --proxies proxies.txt --duration 60
+```
+
+## Configuration
+
+Configure proxies and user agents directly through the application's settings interface.
+
+*   **Proxies:** Add or manage your list of proxy servers. The application will automatically infer protocols and ports where possible.
+*   **User Agents:** Provide a list of user agent strings to be used during attacks. This helps in mimicking different client types.
+
+## Attack Methods
+
+SmackNet supports a variety of attack methods to simulate different types of network stress. Each method is designed to target specific network protocols and vulnerabilities.
+
+*   **`http_flood`**: Overwhelms HTTP/HTTPS servers with a high volume of requests.
+*   **`http_bypass`**: Attempts to bypass common HTTP defenses by using various proxy types.
+*   **`http_slowloris`**: Exploits HTTP servers by keeping connections open for as long as possible, consuming server resources.
+*   **`tcp_flood`**: Floods the target with a large number of TCP connection requests.
+*   **`minecraft_ping`**: Specifically targets Minecraft servers by sending a high volume of ping requests.
+
+# Contributing
+
+We welcome contributions to smacknet! Here's how you can help:
+
+*   **Reporting Bugs:** If you find a bug, please open an issue and provide a clear description, steps to reproduce, and any relevant environment details.
+*   **Feature Requests:** Have an idea for a new feature? Open an issue to discuss it before submitting a pull request.
+*   **Pull Requests:** Fork the repository, make your changes, and submit a pull request. Please ensure your code adheres to existing style guidelines and includes relevant tests.
+
+## License
+
+This project is licensed under the MIT License.
+
+This means you are free to:
+
+*   Use the code for personal or commercial projects.
+*   Modify and distribute the code.
+*   Sublicense the code.
+
+Just make sure to include the original license and copyright notice in your distribution.
+
+---
+
+*This README was generated by [DevDoq](https://devdoq.com)*
