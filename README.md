@@ -1,5 +1,7 @@
 ## About
 
+[![Read Docs](https://app.devdoq.com/shields/read_docs.png)](http://localhost:3000/dashboard/1004977486?name=smacknet)
+
 smacknet is a web-based tool designed for launching HTTP and TCP network attacks. It empowers users to easily configure attack parameters, manage proxy lists, and customize user agents. Monitor your attack statistics in real-time through a user-friendly interface.
 
 ## Built With
